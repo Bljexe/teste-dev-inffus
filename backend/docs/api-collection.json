@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "API Rick and Morty",
+    "description": "Collection para testar a API Rick and Morty",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Personagens",
+      "item": [
+        {
+          "name": "Listar Personagens",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/characters?page=1&per_page=20",
+              "host": ["{{base_url}}"],
+              "path": ["api", "characters"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Número da página"
+                },
+                {
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Itens por página"
+                },
+                {
+                  "key": "name",
+                  "value": "",
+                  "description": "Filtrar por nome",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "",
+                  "description": "Filtrar por status (alive, dead, unknown)",
+                  "disabled": true
+                },
+                {
+                  "key": "species",
+                  "value": "",
+                  "description": "Filtrar por espécie",
+                  "disabled": true
+                },
+                {
+                  "key": "gender",
+                  "value": "",
+                  "description": "Filtrar por gênero (female, male, genderless, unknown)",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "description": "Filtrar por tipo",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Lista todos os personagens com paginação e filtros"
+          }
+        },
+        {
+          "name": "Buscar Personagem por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/characters/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "characters", "1"]
+            },
+            "description": "Retorna detalhes de um personagem específico"
+          }
+        },
+        {
+          "name": "Estatísticas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/characters/stats/overview",
+              "host": ["{{base_url}}"],
+              "path": ["api", "characters", "stats", "overview"]
+            },
+            "description": "Retorna estatísticas dos personagens"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sincronização",
+      "item": [
+        {
+          "name": "Importar Personagens",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/sync/characters",
+              "host": ["{{base_url}}"],
+              "path": ["api", "sync", "characters"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "Importa todos os personagens da API do Rick and Morty"
+          }
+        },
+        {
+          "name": "Sincronizar Dados",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/sync/characters/update",
+              "host": ["{{base_url}}"],
+              "path": ["api", "sync", "characters", "update"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "Sincroniza os dados com a API externa"
+          }
+        }
+      ]
+    }
+  ]
+} 

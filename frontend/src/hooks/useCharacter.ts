@@ -2,13 +2,20 @@ import { useState, useEffect } from 'react';
 import { charactersApi } from '@/services/api';
 import { CharacterResponse } from '@/types/api';
 
-export const useCharacter = (id: number) => {
+export const useCharacter = (id: number | undefined | null) => {
   const [data, setData] = useState<CharacterResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCharacter = async () => {
+      if (!id) {
+        setLoading(false);
+        setData(null);
+        setError(null);
+        return;
+      }
+
       try {
         setLoading(true);
         setError(null);
@@ -21,9 +28,7 @@ export const useCharacter = (id: number) => {
       }
     };
 
-    if (id) {
-      fetchCharacter();
-    }
+    fetchCharacter();
   }, [id]);
 
   return { data, loading, error };

@@ -64,7 +64,7 @@ export default function CharacterPage() {
                 <Image
                   src={character.image}
                   alt={character.name}
-                  fill
+                  fill={true}
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
